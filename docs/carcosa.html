@@ -14,13 +14,35 @@
         bookmarklet.href = "javascript:" + bookmarkletCode;
         bookmarklet.textContent = "Carcosa";
         document.getElementById("output").appendChild(bookmarklet);        
+        
+        displayModal();
+        hideModal();
       });
+      
+      function displayModal() {
+        document.getElementById("display").addEventListener("click", function () {        
+        const popover = document.getElementById("popover");
+        const modal = document.getElementById("modal");
+        popover.classList.toggle("hidden");
+        modal.classList.toggle("hidden");
+        console.log("click");
+      });
+      }
+
+      function hideModal() {
+        document.getElementById("popover").addEventListener("click", function () {
+        const popover = document.getElementById("popover");
+        const modal = document.getElementById("modal");
+        popover.classList.toggle("hidden");
+        modal.classList.toggle("hidden");
+      });
+      }
     </script>
   </head>
   <body>
     <h1>Marcador de colores amarillos</h1>
     <p>Este marcador resalta los elementos amarillos en la página.</p>
-    <p>Arrastra este enlace a tus marcadores para poder ejecutarlo después</p>
+    <p>Arrastra este enlace a tus marcadores para poder ejecutarlo después, <a href="#" id="display">Ver ejemplo</a></p>
     <div id="output" class="box"></div>
     <p>Puedes probarlo en esta misma página:</p>
     <h2 style="color: #ffff33; background: #ecf0f1;">Título amarillo</h2>
@@ -30,5 +52,12 @@
     <div style="background: green; color: white;">Caja verde (se ignora)</div>
     <span style="color: #ffff00;">Texto amarillo</span>
     <span style="color: #000000;">Texto negro (ignorado)</span>
+
+
+    <div id="popover" class="hidden">&nbsp;</div>
+    <div id="modal" class="hidden">
+      <p>Arrastra este enlace a tus marcadores</p> 
+      <img src="carcosa demo.gif" alt="Demo de Carcosa" />
+    </div>    
   </body>
 </html>
