@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generar Bookmarklet</title> 
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>Marcador de colores amarillos</h1>
+    <p>Arrastra este enlace a tus marcadores para poder ejecutarlo después</p>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const bookmarkletCode = `!function(){const t=document.createElement('style');function o(t){const o=t.match(/\\d+(\\.\\d+)?/g).map(Number);if(o.length<3)return'#000000';const[e,n,a,r]=o,l=t=>t.toString(16).padStart(2,'0');let d=\`#\${l(e)}\${l(n)}\${l(a)}\`;return void 0!==r&&r<1&&(d+=l(Math.round(255*r))),d.toLowerCase()}function e(t){return'#000000'!==t&&'#ffffff'!==t&&/^#ffff[0-9a-f]{2}$/.test(t)}function n(t){return t.offsetParent&&t.textContent.trim()}t.textContent='.color-label{position:absolute;background:#000;color:#fff;padding:2px 6px;font-size:11px;border-radius:3px;z-index:9999;pointer-events:auto;white-space:nowrap;font-family:monospace;}',document.head.appendChild(t),document.body.querySelectorAll('*').forEach((t=>{if(!n(t))return;const a=window.getComputedStyle(t),r=a.color,l=a.backgroundColor,d=o(r),i=o(l),s=e(d),c='rgba(0, 0, 0, 0)'!==l&&'transparent'!==l&&e(i);(s||c)&&function(t,o,e,n,a){let r=[];o&&r.push(\`color: \${e}\`),n&&r.push(\`background: \${a}\`);const l=t.getBoundingClientRect(),d=document.createElement('div');d.className='color-label',d.textContent=r.join(' | '),d.style.top=window.scrollY+l.top-20+'px',d.style.left=\`\${window.scrollX+l.left}px\`,d.dataset.targetId=Math.random().toString(36).substring(2),t.dataset.colorLabelTarget=d.dataset.targetId,d.addEventListener('mouseover',(()=>{o&&(t.dataset.originalColor=t.style.color,t.style.color='pink'),n&&(t.dataset.originalBg=t.style.backgroundColor,t.style.backgroundColor='pink')})),d.addEventListener('mouseout',(()=>{void 0!==t.dataset.originalColor&&(t.style.color=t.dataset.originalColor,delete t.dataset.originalColor),void 0!==t.dataset.originalBg&&(t.style.backgroundColor=t.dataset.originalBg,delete t.dataset.originalBg)})),document.body.appendChild(d)}(t,s,d,c,i)}))}();`;
+
+        // Crear un bookmarklet
+        const bookmarklet = document.createElement("a");
+        bookmarklet.href = "javascript:" + bookmarkletCode;
+        bookmarklet.textContent = "Carcosa";
+        document.body.appendChild(bookmarklet);
+      });
+    </script>
+  </body>
+</html>
