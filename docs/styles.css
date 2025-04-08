@@ -21,3 +21,11 @@ h1 {
 .bookmarklet-link:hover {
   background-color: #0056b3;
 }
+.box {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1em;
+  margin-bottom: 3em;
+
+}
