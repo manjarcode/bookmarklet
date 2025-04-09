@@ -5,23 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Generar Bookmarklet</title> 
     <link rel="stylesheet" href="styles.css">
-    <script>     
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
-        //const bookmarkletCode = `!function(){const t=document.createElement('style');function o(t){const o=t.match(/\\d+(\\.\\d+)?/g).map(Number);if(o.length<3)return'#000000';const[e,n,a,r]=o,l=t=>t.toString(16).padStart(2,'0');let d=\`#\${l(e)}\${l(n)}\${l(a)}\`;return void 0!==r&&r<1&&(d+=l(Math.round(255*r))),d.toLowerCase()}function e(t){return'#000000'!==t&&'#ffffff'!==t&&/^#ffff[0-9a-f]{2}$/.test(t)}function n(t){return t.offsetParent&&t.textContent.trim()}t.textContent='.color-label{position:absolute;background:#000;color:#fff;padding:2px 6px;font-size:11px;border-radius:3px;z-index:9999;pointer-events:auto;white-space:nowrap;font-family:monospace;}',document.head.appendChild(t),document.body.querySelectorAll('*').forEach((t=>{if(!n(t))return;const a=window.getComputedStyle(t),r=a.color,l=a.backgroundColor,d=o(r),i=o(l),s=e(d),c='rgba(0, 0, 0, 0)'!==l&&'transparent'!==l&&e(i);(s||c)&&function(t,o,e,n,a){let r=[];o&&r.push(\`color: \${e}\`),n&&r.push(\`background: \${a}\`);const l=t.getBoundingClientRect(),d=document.createElement('div');d.className='color-label',d.textContent=r.join(' | '),d.style.top=window.scrollY+l.top-20+'px',d.style.left=\`\${window.scrollX+l.left}px\`,d.dataset.targetId=Math.random().toString(36).substring(2),t.dataset.colorLabelTarget=d.dataset.targetId,d.addEventListener('mouseover',(()=>{o&&(t.dataset.originalColor=t.style.color,t.style.color='pink'),n&&(t.dataset.originalBg=t.style.backgroundColor,t.style.backgroundColor='pink')})),d.addEventListener('mouseout',(()=>{void 0!==t.dataset.originalColor&&(t.style.color=t.dataset.originalColor,delete t.dataset.originalColor),void 0!==t.dataset.originalBg&&(t.style.backgroundColor=t.dataset.originalBg,delete t.dataset.originalBg)})),document.body.appendChild(d)}(t,s,d,c,i)}))}();`;
-        //const bookmarkletCode2 = `function(){const e=document.createElement("style");e.textContent=".color-label{position:absolute;background:#000;color:#fff;padding:2px 6px;font-size:11px;border-radius:3px;z-index:9999;pointer-events:auto;white-space:nowrap;font-family:monospace;display:none}",document.head.appendChild(e);function t(e){const t=e.match(/\d+(\.\d+)?/g).map(Number);if(t.length<3)return"#000000";const[o,n,r,a]=t,c=e=>e.toString(16).padStart(2,"0");let l=\`#${c(o)}${c(n)}${c(r)}\`;return void 0!==a&&a<1&&(l+=c(Math.round(255*a))),l.toLowerCase()}function o(e){return"#000000"!==e&&"#ffffff"!==e&&/^#ffff[0-9a-f]{2}$/.test(e)}function n(e){return e.offsetParent&&e.textContent.trim()}function r(e,t,o="#ff69b4"){const n=\`original${t.charAt(0).toUpperCase()+t.slice(1)}\`;e.dataset[n]=e.style[t],e.style[t]=o}function a(e,t){const o=\`original${t.charAt(0).toUpperCase()+t.slice(1)}\`;void 0!==e.dataset[o]&&(e.style[t]=e.dataset[o],delete e.dataset[o])}function c(e){return[t(e.borderTopColor),t(e.borderRightColor),t(e.borderBottomColor),t(e.borderLeftColor)]}function l({colorValid:e,colorHex:t,bgValid:o,bgHex:n,borderValid:r,borderHexes:a,placeholderValid:c,placeholderHex:l}){const d=[];if(e&&d.push(\`color: ${t}\`),o&&d.push(\`background: ${n}\`),r){const t=[...new Set(a.filter(o))];d.push(\`border: ${t.join(", ")}\`)}return c&&d.push(\`placeholder: ${l}\`),d.join(" | ")}function d(e,n){const a=document.createElement("div"),d=e.getBoundingClientRect(),s=Math.random()*(d.width-100);a.className="color-label",a.textContent=l(n);const i=Math.max(0,window.scrollY+d.top-20);a.style.top=\`${i}px\`,a.style.left=\`${window.scrollX+d.left+s}px\`,a.dataset.targetId=Math.random().toString(36).substring(2),e.dataset.colorLabelTarget=a.dataset.targetId,e.addEventListener("mouseover",(l=>{a.style.display="block",document.querySelectorAll(".color-label").forEach((e=>{e!==a&&(e.style.opacity="0.1")})),r(e,"outline",null,"2px solid pink"),n.colorValid&&r(e,"color"),n.bgValid&&r(e,"backgroundColor"),n.borderValid&&r(e,"borderColor"),l.stopPropagation()})),e.addEventListener("mouseout",(()=>{a.style.display="none",document.querySelectorAll(".color-label").forEach((e=>e.style.opacity="1")),["color","backgroundColor","borderColor","outline"].forEach((t=>a(e,t)))})),document.body.appendChild(a)}!function(){document.body.querySelectorAll("*").forEach((e=>{if(!n(e))return;const r=window.getComputedStyle(e),l=t(r.color),s=t(r.backgroundColor),i=c(r),p=o(l),f="transparent"!==r.backgroundColor&&o(s),u=i.some(o);let y=null,m=!1;if(("INPUT"===e.tagName||"TEXTAREA"===e.tagName)&&window.getComputedStyle(e,"::placeholder").color){const o=window.getComputedStyle(e,"::placeholder");y=t(o.color),m=o&&o.color&&o(y)}(p||f||u||m)&&d(e,{colorValid:p,colorHex:l,bgValid:f,bgHex:s,borderValid:u,borderHexes:i,placeholderValid:m,placeholderHex:y})}))}()})()`;
-
-        
-        // Crear un bookmarklet
-        const bookmarklet = document.createElement("a");
-        bookmarklet.href = "javascript:" + bookmarkletCode2;
-        bookmarklet.textContent = "Carcosa";
-        document.getElementById("output").appendChild(bookmarklet);        
-        
-        displayModal();
-        hideModal();
+        bindDisplayModal();
+        bindHideModal();
       });
       
-      function displayModal() {
+      function bindDisplayModal() {
         document.getElementById("display").addEventListener("click", function () {        
         const popover = document.getElementById("popover");
         const modal = document.getElementById("modal");
@@ -31,7 +21,7 @@
       });
       }
 
-      function hideModal() {
+      function bindHideModal() {
         document.getElementById("popover").addEventListener("click", function () {
         const popover = document.getElementById("popover");
         const modal = document.getElementById("modal");
@@ -44,17 +34,17 @@
   <body>
     <h1>Marcador de colores amarillos</h1>
     <p>Este marcador resalta los elementos amarillos en la página.</p>
-    <p>Arrastra este enlace a tus marcadores para poder ejecutarlo después, <a href="#" id="display">Ver ejemplo</a></p>
-    <a href="javascript:(function(){
-      var s = document.createElement('script');
-      s.src = 'https://raw.githubusercontent.com/manjarcode/bookmarklet/refs/heads/main/src/carcosa.js';
-      s.onload = function() {
-        console.log('Script cargado y ejecutado');
-      };
-      document.head.appendChild(s);
-    })();">Ejecutar prueba</a>
-    
-    <div id="output" class="box"></div>
+    <p>Arrastra este enlace a tus marcadores para poder ejecutarlo después, <a href="#" id="display">Ver ejemplo</a></p>    
+    <div class="box">
+      <a href="javascript:(function(){
+        var s = document.createElement('script');
+        s.src = 'https://manjarcode.github.io/bookmarklet/carcosa.js';
+        s.onload = function() {
+          console.log('Script cargado y ejecutado');
+        };
+        document.head.appendChild(s);
+      })();">Carcosa</a>
+    </div>
     <p>Puedes probarlo en esta misma página:</p>
     <h2 style="color: #ffff33; background: #ecf0f1;">Título amarillo</h2>
     <p style="color: rgb(0, 0, 0); background-color: #ffff88;">
